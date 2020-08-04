@@ -5,16 +5,19 @@ import "components/DayListItem.scss"
 export default function DayListItem(props) {
 
   console.log(props)
-  let buttonClass = className("DayListItem", 
+  let dayClass = className("day-list__item", 
     {
-      "DayListItem--clickable": props.clickable
+      "day-list__item--selected": props.selected,
+      "day-list__item--full": props.spots === 0
     })
+
   return (
     <li
       onClick={() => props.setDay(props.name)}
+      className={dayClass}
     >
-      <h2 className={buttonClass}>{props.name}</h2> 
-      <h3 className="text--light">{props.spots}</h3>
+      <h2>{props.name}</h2> 
+      <h3>{props.spots}</h3>
     </li>
   );
 }
