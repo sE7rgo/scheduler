@@ -8,13 +8,16 @@ export default function Form(props) {
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
   const reset = () => {
-     return[setName(""), setInterviewer(null)];
+     return [setName(""), setInterviewer(null)];
   };
 
   const cancel = () => {
-    return [reset(), props.onCancel];
+    return [reset(), props.onCancel()];
   };
 
+  const save = () => {
+    return [props.onSave(name, interviewer)]
+  }
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
@@ -25,6 +28,7 @@ export default function Form(props) {
           <input
             className="appointment__create-input text--semi-bold"
             name={props.name}
+            val={name}
             type="text"
             placeholder="Enter Student Name"
             onChange={(event) => setName(event.target.value)}
@@ -32,7 +36,7 @@ export default function Form(props) {
         </form>
         <InterviewerList
           interviewers={props.interviewers} 
-          value={props.interviewer} 
+          value={interviewer} 
           setInterviewer={setInterviewer} />
       </section>
       <section className="appointment__card-right">
@@ -45,7 +49,7 @@ export default function Form(props) {
           </Button>
           <Button 
             confirm
-            onClick={props.onSave}
+            onClick={save}
           >
             Save
           </Button>
