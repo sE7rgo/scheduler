@@ -4,60 +4,7 @@ import axios from "axios";
 import "components/Application.scss";
 import DayList from "components/DayList";
 import Appointment from "components/Appointment/index";
-/* some hardcoded appointment data */
-
-const appointments = [
-  {
-    id: 1,
-    time: "12pm",
-  },
-  {
-    id: 2,
-    time: "1pm",
-    interview: {
-      student: "Lydia Miller-Jones",
-      interviewer: {
-        id: 1,
-        name: "Sylvia Palmer",
-        avatar: "https://i.imgur.com/LpaY82x.png",
-      }
-    }
-  },
-  {
-    id: 3,
-    time: "12pm",
-  },
-  {
-    id: 4,
-    time: "11am",
-    interview: {
-      student: "De Niro",
-      interviewer: {
-        id: 1,
-        name: "Sylvia Palmer",
-        avatar: "https://i.imgur.com/LpaY82x.png",
-      }
-    }
-  },
-  {
-    id: 5,
-    time: "13pm",
-  },
-  {
-    id: 6,
-    time: "9am",
-    interview: {
-      student: "Al Pacino",
-      interviewer: {
-        id: 1,
-        name: "Sylvia Palmer",
-        avatar: "https://i.imgur.com/LpaY82x.png",
-      }
-    }
-  }
-];
-
-
+import getAppointmentsForDay from "helpers/selectors";
 
 
 
@@ -70,14 +17,27 @@ export default function Application(props) {
   });
   
   const setDay = day => setState({ ...state, day });
-  const setDays = days => setState(prev => ({...prev, days}))
+  const appointments = getAppointmentsForDay(state, state.day)
 
   useEffect(() => {
-    axios.get('/api/days')
-    .then((response) => {
-      setDays(response.data)
-      console.log(response.data)
+
+    Promise.all([
+      Promise.resolve(axios.get('/api/days')),
+      Promise.resolve(axios.get('/api/appointments'))
+    ]).then((all) => {
+      console.log(all[0].data);
+      console.log(all[1].data);
+      setState(prev => ({ days: all[0].data, appointments: all[1].data}));
+
     })
+    // axios.get('/api/days')
+    // .then((response) => {
+    //   setDays(response.data)
+    //   console.log(response.data)
+    // })
+    // .then((response) => {
+    //   console.log(response.data)
+    // })
   },[])
 
   return (
