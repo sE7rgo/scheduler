@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 import "components/Application.scss";
 import DayList from "components/DayList";
@@ -80,6 +81,16 @@ const days = [
 export default function Application(props) {
 
   const [day, setDay] = useState("Monday");
+
+
+  useEffect(() => {
+    axios.get("/api/day")
+    .then((response) => {
+      setDay(response)
+      console.log(response)
+    })
+  }, [])
+
   return (
     <main className="layout">
       <section className="sidebar">
