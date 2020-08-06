@@ -1,5 +1,4 @@
-
-export function getAppointmentsForDay(state, day) {
+function getAppointmentsForDay(state, day) {
   let appointmentsForDay = [];
   // get specific day from array
   const resultDay = state.days.filter(d => d.name === day);
@@ -12,3 +11,17 @@ export function getAppointmentsForDay(state, day) {
    }
   return appointmentsForDay;
 }
+
+function getInterview(state, interview) {
+  let result = { "student": null, "interviewer": null };
+  
+  if (!interview) return null;
+  
+  const { interviewer, student } = interview;
+  result["interviewer"] = state.interviewers[interviewer.toString()];
+  result["student"] = student;
+
+  return result;
+}
+
+module.exports = { getAppointmentsForDay, getInterview }
