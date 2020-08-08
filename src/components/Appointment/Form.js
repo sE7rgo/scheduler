@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import Button from "components/Button";
 import InterviewerList from "components/InterviewerList";
+import Show from "components/Appointment/Show";
 
 export default function Form(props) {
 /* creating hooks */
   const [name, setName] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
+
 
   const reset = () => {
      return [setName(""), setInterviewer(null)];
@@ -15,9 +17,8 @@ export default function Form(props) {
     return [reset(), props.onCancel()];
   };
 
-  const save = () => {
-    return [props.onSave(name, interviewer)]
-  }
+
+
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
@@ -49,7 +50,7 @@ export default function Form(props) {
           </Button>
           <Button 
             confirm
-            onClick={save}
+            onClick={() => props.onSave(name, interviewer)}
           >
             Save
           </Button>

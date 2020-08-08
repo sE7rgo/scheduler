@@ -16,15 +16,52 @@ export default function Application(props) {
     appointments: {},
     interviewers: {}
   });
+
   
   const setDay = day => setState({ ...state, day });
   const appointments = getAppointmentsForDay(state, state.day);
-
-  const interviewers = getInterviewersForDay(state, state.day);
-
-  const schedule = appointments.map((appointment) => {
-    const interview = getInterview(state, appointment.interview);
   
+  const interviewers = getInterviewersForDay(state, state.day);
+  
+  
+  
+  function bookInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    return ( 
+      Promise.resolve(axios.put(`/api/appointments/${id}`, {interview}))
+      .then(() => {
+        setState({...state, appointments});
+       })
+    )
+  }
+
+  function cancelInterview(id) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    return ( 
+      Promise.resolve(axios.delete(`/api/appointments/${id}`))
+      .then(() => {
+        setState({...state, appointments});
+      })
+    )
+  }
+  
+  const schedule = appointments.map((appointment) => {
+  const interview = getInterview(state, appointment.interview);
+
     return (
       <Appointment
         key={appointment.id}
@@ -32,6 +69,8 @@ export default function Application(props) {
         time={appointment.time}
         interview={interview}
         interviewers={interviewers}
+        bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
     );
   });
@@ -43,7 +82,6 @@ export default function Application(props) {
       Promise.resolve(axios.get('/api/appointments')),
       Promise.resolve(axios.get('/api/interviewers'))
     ]).then((all) => {
-      console.log(all[2].data);
       setState(prev => 
         ({ 
           days: all[0].data, 

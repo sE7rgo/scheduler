@@ -8,6 +8,8 @@ export default function Empty(props) {
         src="images/add.png"
         alt="Add"
         onClick={props.onAdd}
+        bookInterview={props.bookInterview}
+        save={props.save}
       />
     </main>
   )
