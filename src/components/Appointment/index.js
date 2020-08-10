@@ -9,6 +9,7 @@ import Empty from "components/Appointment/Empty";
 import Form from "components/Appointment/Form";
 import Status from "components/Appointment/Status";
 import Confirm from "components/Appointment/Confirm";
+import Error from "components/Appointment/Error";
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
@@ -17,12 +18,14 @@ const SAVING = "SAVING";
 const DELETING = "DELETING"
 const CONFIRM = "CONFIRM";
 const EDIT = "EDIT";
+const ERROR_SAVE = "ERROR_SAVE";
+const ERROR_DELETE = "ERROR_DELETE";
 
 export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
-
+console.log('.........', props)
   function save(name, interviewer) {
     const interview = {
       student: name,
@@ -30,7 +33,8 @@ export default function Appointment(props) {
     };
     transition(SAVING);
     Promise.resolve(props.bookInterview(props.id, interview))
-    .then(() => transition(SHOW));
+    .then(() => transition(SHOW))
+    .catch(error => transition(ERROR_SAVE, true));
   }
 
   function confirm() {
@@ -38,9 +42,10 @@ export default function Appointment(props) {
   }
 
   function deleteAppointment(id) {
-    transition(DELETING)
+    transition(DELETING, true)
     Promise.resolve(props.cancelInterview(id))
-    .then(() => transition(EMPTY));
+    .then(() => transition(EMPTY))
+    .catch(error => transition(ERROR_DELETE, true));
   }
 
   function editAppointment() {
@@ -83,6 +88,7 @@ export default function Appointment(props) {
       }
       {mode === CONFIRM && (
         <Confirm
+          message={"Are you sure you would like to delete?"}
           onCancel={() => {
             transition(SHOW);
           }}
@@ -91,6 +97,18 @@ export default function Appointment(props) {
           }}
         />
       )}
+      {mode === ERROR_SAVE && 
+        <Error 
+          message={"Could not save appointment."}
+          onClose={back} 
+        />
+      }
+      {mode === ERROR_DELETE && 
+        <Error 
+          message={"Could not cancel appointment."}
+          onClose={back} 
+        />
+      }
     </article>
   )
 }
