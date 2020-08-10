@@ -5,8 +5,8 @@ import Show from "components/Appointment/Show";
 
 export default function Form(props) {
 /* creating hooks */
-  const [name, setName] = useState(props.name || "");
-  const [interviewer, setInterviewer] = useState(props.interviewer || null);
+const [name, setName] = useState(props.name || "");
+const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
 
   const reset = () => {
@@ -29,7 +29,7 @@ export default function Form(props) {
           <input
             className="appointment__create-input text--semi-bold"
             name={props.name}
-            val={name}
+            value={name}
             type="text"
             placeholder="Enter Student Name"
             onChange={(event) => setName(event.target.value)}

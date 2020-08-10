@@ -16,6 +16,7 @@ const CREATE = "CREATE";
 const SAVING = "SAVING";
 const DELETING = "DELETING"
 const CONFIRM = "CONFIRM";
+const EDIT = "EDIT";
 
 export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
@@ -27,7 +28,6 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
-    console.log('inside save', props.id)
     transition(SAVING);
     Promise.resolve(props.bookInterview(props.id, interview))
     .then(() => transition(SHOW));
@@ -43,6 +43,10 @@ export default function Appointment(props) {
     .then(() => transition(EMPTY));
   }
 
+  function editAppointment() {
+    transition(CREATE);
+  }
+
   return (
     <article className="appointment">
       <Header
@@ -54,10 +58,13 @@ export default function Appointment(props) {
           student={props.interview.student}
           interviewer={props.interview.interviewer}
           onCancel={confirm}
+          onEdit={editAppointment}
         />
       )}
       {mode === CREATE && 
         <Form
+          name={props.interview.student}
+          interviewer={props.interview.interviewer.id}
           interviewers={props.interviewers}
           onSave={(name, interviewer) => {
             save(name, interviewer);
