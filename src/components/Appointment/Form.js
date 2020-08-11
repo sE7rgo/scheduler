@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import Button from "components/Button";
 import InterviewerList from "components/InterviewerList";
-import Show from "components/Appointment/Show";
 
 export default function Form(props) {
 /* creating hooks */
 const [name, setName] = useState(props.name || "");
 const [interviewer, setInterviewer] = useState(props.interviewer || null);
+const [error, setError] = useState("");
 
 
   const reset = () => {
@@ -17,7 +17,14 @@ const [interviewer, setInterviewer] = useState(props.interviewer || null);
     return [reset(), props.onCancel()];
   };
 
-
+  function validate() {
+    if (name === "") {
+      setError("Student name cannot be blank");
+      return;
+    }
+  
+    props.onSave(name, interviewer);
+  }
 
   return (
     <main className="appointment__card appointment__card--create">
@@ -32,9 +39,13 @@ const [interviewer, setInterviewer] = useState(props.interviewer || null);
             value={name}
             type="text"
             placeholder="Enter Student Name"
-            onChange={(event) => setName(event.target.value)}
+            onChange={(event) => {
+              setName(event.target.value);
+            }}
+            data-testid = "student-name-input"
           />
         </form>
+        <section className="appointment__validation">{error}</section>
         <InterviewerList
           interviewers={props.interviewers} 
           value={interviewer} 
@@ -50,7 +61,7 @@ const [interviewer, setInterviewer] = useState(props.interviewer || null);
           </Button>
           <Button 
             confirm
-            onClick={() => props.onSave(name, interviewer)}
+            onClick={validate}
           >
             Save
           </Button>
