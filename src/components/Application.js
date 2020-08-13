@@ -62,6 +62,7 @@ export default function Application(props) {
         </section>
         <section className="schedule">
           {schedule}
+          <Appointment />
         </section>
     </main>
   );
