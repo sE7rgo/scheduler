@@ -14,7 +14,7 @@ const [error, setError] = useState("");
   };
 
   const cancel = () => {
-    return [reset(), props.onCancel()];
+    return [reset(), props.onCancel];
   };
 
   function validate() {
@@ -23,6 +23,7 @@ const [error, setError] = useState("");
       return;
     }
   
+    setError("");
     props.onSave(name, interviewer);
   }
 
