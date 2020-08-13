@@ -26,13 +26,14 @@ export default function useApplicationData() {
     //updating api with a new appointment
     return axios.put(`/api/appointments/${id}`, {interview})
     .then(() => {
-        let daysList = state.days;
-        daysList.forEach((day) => {
-          if (day.name === state.day) {
-            day.spots--;
-          } 
-        })
-        setState((prevState) => ({...prevState, days: daysList, appointments}));
+        if (state.appointments[id].interview === null) {
+          state.days.forEach((day) => {
+            if (day.name === state.day) {
+              day.spots--;
+            }
+          })
+        }
+        setState((prevState) => ({...prevState, days: state.days, appointments}));
        })
   }
 

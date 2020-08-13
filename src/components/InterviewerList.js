@@ -6,6 +6,7 @@ import "components/InterviewerList.scss";
 import InterviewerListItem from "components/InterviewerListItem";
 
 export default function InterviewerList(props) {
+  // console.log('int Props', props.interviewer)
 
   //check if prop passed in this component is not other then:
   InterviewerList.propTypes = {
@@ -15,6 +16,7 @@ export default function InterviewerList(props) {
 //render InterviewerListItem
   const list = props.interviewers.map((interviewer) => {
     const { id, name, avatar } = interviewer;
+    console.log('id', id)
 
     
     return (
@@ -22,11 +24,8 @@ export default function InterviewerList(props) {
         key={id}
         name={name}
         avatar={avatar}
-        selected={id === props.value}
-				setInterviewer={event => {
-          props.setInterviewer(id)
-        }
-        }
+        selected={id === props.interviewer}
+				setInterviewer={event => props.setInterviewer(id)}
       />
     )
   })

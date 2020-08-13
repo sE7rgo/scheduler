@@ -19,6 +19,7 @@ const DELETING = "DELETING"
 const CONFIRM = "CONFIRM";
 const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
+const EDIT = "EDIT";
 
 export default function Appointment(props) {
   // use custom hook for changing modes
@@ -48,8 +49,7 @@ export default function Appointment(props) {
   }
 
   function editAppointment() {
-
-    transition(CREATE);
+    transition(EDIT);
   }
 
   return (
@@ -60,6 +60,17 @@ export default function Appointment(props) {
         time={props.time}
       />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
+      {mode === EDIT && 
+        <Form
+          name={props.interview.student}
+          interviewer={props.interview.interviewer.id}
+          interviewers={props.interviewers}
+          onSave={(name, interviewer) => {
+            save(name, interviewer);
+          }}
+          onCancel={() => transition(SHOW)}
+        />
+      }
       {mode === SHOW && (
         <Show
           student={props.interview.student}
@@ -74,7 +85,7 @@ export default function Appointment(props) {
           onSave={(name, interviewer) => {
             save(name, interviewer);
           }}
-        />
+          />
       }
       {mode === SAVING && 
         <Status 
