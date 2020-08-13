@@ -17,7 +17,6 @@ const CREATE = "CREATE";
 const SAVING = "SAVING";
 const DELETING = "DELETING"
 const CONFIRM = "CONFIRM";
-const EDIT = "EDIT";
 const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
 
@@ -25,7 +24,6 @@ export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
-console.log('.........', props)
   function save(name, interviewer) {
     const interview = {
       student: name,
@@ -45,15 +43,18 @@ console.log('.........', props)
     transition(DELETING, true)
     Promise.resolve(props.cancelInterview(id))
     .then(() => transition(EMPTY))
-    .catch(error => transition(ERROR_DELETE, true));
+    .catch((error) => {transition(ERROR_DELETE, true); console.log(error)});
   }
 
   function editAppointment() {
+
     transition(CREATE);
   }
 
   return (
-    <article className="appointment">
+    <article className="appointment"
+    data-testid="appointment"
+    >
       <Header
         time={props.time}
       />
@@ -68,8 +69,6 @@ console.log('.........', props)
       )}
       {mode === CREATE && 
         <Form
-          name={props.interview.student}
-          interviewer={props.interview.interviewer.id}
           interviewers={props.interviewers}
           onSave={(name, interviewer) => {
             save(name, interviewer);
