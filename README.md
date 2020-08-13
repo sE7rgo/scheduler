@@ -26,9 +26,7 @@ npm run storybook
 
 ## Scheduler-api
 
-```sh
 Follow instructions specified in this [scheduler-api repo](https://github.com/lighthouse-labs/scheduler-api) provided by Lighthouse Labs
-```
 
 
 ## Dependencies
@@ -59,21 +57,28 @@ Follow instructions specified in this [scheduler-api repo](https://github.com/li
 ```
 
 ## Screenshots
-
+- Main Application View
 ![Main Application View](https://github.com/sE7rgo/scheduler/blob/master/docs/Create.png)
 
+- Day Selection
 ![Day Selection](https://github.com/sE7rgo/scheduler/blob/master/docs/tuesday.png)
 
+- Creation of a new appointment
 ![Creation of a new appointment](https://github.com/sE7rgo/scheduler/blob/master/docs/tuesday.png)
 
+- Blank student name
 ![Blank student name](https://github.com/sE7rgo/scheduler/blob/master/docs/student_blank_error.png)
 
+- Appointment Cancellation
 ![Appointment Cancellation](http://full/path/to/img.jpg)
 
+- Confirmation
 ![Confirmation](https://github.com/sE7rgo/scheduler/blob/master/docs/Status_element.png)
 
+- Cancellation Status
 ![Cancellation Status](https://github.com/sE7rgo/scheduler/blob/master/docs/Status_element.png)
 
+- Cancellation Error
 ![Cancellation Error](https://github.com/sE7rgo/scheduler/blob/master/docs/error.png)
 
 
