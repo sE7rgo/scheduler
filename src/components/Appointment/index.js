@@ -21,9 +21,11 @@ const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
 
 export default function Appointment(props) {
+  // use custom hook for changing modes
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
+  //saving student name and interviewer
   function save(name, interviewer) {
     const interview = {
       student: name,
@@ -38,7 +40,6 @@ export default function Appointment(props) {
   function confirm() {
     transition(CONFIRM)
   }
-
   function deleteAppointment(id) {
     transition(DELETING, true)
     Promise.resolve(props.cancelInterview(id))

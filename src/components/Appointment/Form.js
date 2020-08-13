@@ -8,15 +8,15 @@ const [name, setName] = useState(props.name || "");
 const [interviewer, setInterviewer] = useState(props.interviewer || null);
 const [error, setError] = useState("");
 
-
+// reset the student name to empty and interviewer to null
   const reset = () => {
      return [setName(""), setInterviewer(null)];
   };
-
+//cancel button
   const cancel = () => {
     return [reset(), props.onCancel];
   };
-
+//check if student name is not blank
   function validate() {
     if (name === "") {
       setError("Student name cannot be blank");

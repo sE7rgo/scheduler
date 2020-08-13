@@ -7,10 +7,12 @@ import InterviewerListItem from "components/InterviewerListItem";
 
 export default function InterviewerList(props) {
 
+  //check if prop passed in this component is not other then:
   InterviewerList.propTypes = {
     value: PropTypes.number,
     setInterviewer: PropTypes.func.isRequired
   };
+//render InterviewerListItem
   const list = props.interviewers.map((interviewer) => {
     const { id, name, avatar } = interviewer;
 

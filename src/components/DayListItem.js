@@ -4,13 +4,14 @@ import "components/DayListItem.scss"
 
 export default function DayListItem(props) {
 
+  //different viws of days depending on spots left
   let dayClass = className("day-list__item", 
     {
       "day-list__item--selected": props.selected,
       "day-list__item--full": props.spots === 0
     })
 
-
+//specific text based on spots left
   const formatSpots = (props) =>
     props.spots === 0
       ? 'no spots remaining'

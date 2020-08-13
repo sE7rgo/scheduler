@@ -10,14 +10,14 @@ import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "help
 
 
 export default function Application(props) {
-
+//custom hook for all data for Application
   const {
     state,
     setDay,
     bookInterview,
     cancelInterview
   } = useApplicationData();
-
+//selectors
   const appointments = getAppointmentsForDay(state, state.day);
   
   const interviewers = getInterviewersForDay(state, state.day);

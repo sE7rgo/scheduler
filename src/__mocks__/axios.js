@@ -1,3 +1,4 @@
+//fake database
 const fixtures = {
   days: [
     {
@@ -52,7 +53,7 @@ const fixtures = {
     }
   }
 };
-
+//mocking axious requests
 export default {
   get: jest.fn(url => {
     if (url === "/api/days") {

@@ -1,9 +1,9 @@
-import react, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 
 export default function useApplicationData() {
-
+//set useState hook, default to Monday
   const [state, setState] = useState({
     day: "Monday",
     days: [],
@@ -12,8 +12,9 @@ export default function useApplicationData() {
   });
 
   const setDay = day => setState({ ...state, day });
-  
+  //boot bookInterview function, called upon creation of new appointment
   function bookInterview(id, interview) {
+    //update appointments with a newly created appointment
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -22,6 +23,7 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     };
+    //updating api with a new appointment
     return axios.put(`/api/appointments/${id}`, {interview})
     .then(() => {
         let daysList = state.days;
@@ -35,6 +37,7 @@ export default function useApplicationData() {
   }
 
   function cancelInterview(id) {
+    //delete of existent interview
     const appointment = {
       ...state.appointments[id],
       interview: null
@@ -44,6 +47,7 @@ export default function useApplicationData() {
       [id]: appointment
     };
     return ( 
+      //from api
       Promise.resolve(axios.delete(`/api/appointments/${id}`))
       .then(() => {
         let daysList = state.days;
@@ -58,7 +62,7 @@ export default function useApplicationData() {
   }
 
   useEffect(() => {
-
+// getting all needed data upon page opening
     Promise.all([
       Promise.resolve(axios.get('/api/days')),
       Promise.resolve(axios.get('/api/appointments')),
