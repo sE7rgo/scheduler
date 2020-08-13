@@ -59,31 +59,31 @@ Follow instructions specified in this [scheduler-api repo](https://github.com/li
 ## Screenshots
 
 
-- Main Application View
+### Main Application View
 ![Main Application View](https://github.com/sE7rgo/scheduler/blob/master/docs/main_menu.png)
 
 
-- Day Selection
+### Day Selection
 ![Day Selection](https://github.com/sE7rgo/scheduler/blob/master/docs/tuesday.png)
 
 
-- Creation of a new appointment
+### Creation of a new appointment
 ![Creation of a new appointment](https://github.com/sE7rgo/scheduler/blob/master/docs/Create.png)
 
 
-- Blank student name
+### Blank student name
 ![Blank student name](https://github.com/sE7rgo/scheduler/blob/master/docs/student_blank_error.png)
 
 
-- Appointment Cancellation
+### Appointment Cancellation
 ![Appointment Cancellation](https://github.com/sE7rgo/scheduler/blob/master/docs/confirm_element.png)
 
 
-- Cancellation Status
+### Cancellation Status
 ![Cancellation Status](https://github.com/sE7rgo/scheduler/blob/master/docs/Status_element.png)
 
 
-- Cancellation Error
+### Cancellation Error
 ![Cancellation Error](https://github.com/sE7rgo/scheduler/blob/master/docs/error.png)
 
 
