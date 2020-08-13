@@ -28,13 +28,18 @@ function getInterviewersForDay (state, day) {
 function getInterview(state, interview) {
   let result = { "student": null, "interviewer": null };
   
-  if (!interview) return null;
-  
-  const { interviewer, student } = interview;
-  result["interviewer"] = state.interviewers[interviewer.toString()];
-  result["student"] = student;
+  if (!interview) {
+    return null;
+  } else {
+      const { interviewer, student } = interview;
 
-  return result;
-}
+      if (interviewer) {
+        result["interviewer"] = state.interviewers[interviewer.toString()];
+        result["student"] = student;
+      }
 
-module.exports = { getAppointmentsForDay, getInterview, getInterviewersForDay }
+      return result;
+  }
+};
+
+module.exports = { getAppointmentsForDay, getInterview, getInterviewersForDay };
