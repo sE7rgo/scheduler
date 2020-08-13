@@ -24,6 +24,13 @@ npm test
 npm run storybook
 ```
 
+## Scheduler-api
+
+```sh
+Follow instructions specified in this [scheduler-api repo](https://github.com/lighthouse-labs/scheduler-api) provided by Lighthouse Labs
+```
+
+
 ## Dependencies
 ```sh
 - axios
@@ -33,6 +40,7 @@ npm run storybook
 - react-dom "^16.9.0"
 - react-scripts
 ```
+
 ## devDependencies
 ```sh
 - babel/core
@@ -49,3 +57,23 @@ npm run storybook
 - prop-types
 - react-test-renderer "^16.9.0"
 ```
+
+## Screenshots
+
+![Main Application View](https://github.com/sE7rgo/scheduler/blob/master/docs/Create.png)
+
+![Day Selection](https://github.com/sE7rgo/scheduler/blob/master/docs/tuesday.png)
+
+![Creation of a new appointment](https://github.com/sE7rgo/scheduler/blob/master/docs/tuesday.png)
+
+![Blank student name](https://github.com/sE7rgo/scheduler/blob/master/docs/student_blank_error.png)
+
+![Appointment Cancellation](http://full/path/to/img.jpg)
+
+![Confirmation](https://github.com/sE7rgo/scheduler/blob/master/docs/Status_element.png)
+
+![Cancellation Status](https://github.com/sE7rgo/scheduler/blob/master/docs/Status_element.png)
+
+![Cancellation Error](https://github.com/sE7rgo/scheduler/blob/master/docs/error.png)
+
+
