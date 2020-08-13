@@ -1,5 +1,7 @@
 # Interview Scheduler
 
+React application that allows users to book and cancel interviews.
+
 ## Setup
 
 Install dependencies with `npm install`.
@@ -20,4 +22,30 @@ npm test
 
 ```sh
 npm run storybook
+```
+
+## Dependencies
+```sh
+- axios
+- classnames
+- normalize.css
+- react "^16.9.0"
+- react-dom "^16.9.0"
+- react-scripts
+```
+## devDependencies
+```sh
+- babel/core
+- storybook/addon-actions
+- storybook/addon-backgrounds
+- storybook/addon-links
+- storybook/addons
+- storybook/react
+- testing-library/jest-dom
+- testing-library/react
+- testing-library/react-hooks "^3.4.1"
+- babel-loader
+- node-sass
+- prop-types
+- react-test-renderer "^16.9.0"
 ```
